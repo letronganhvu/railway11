@@ -1,76 +1,93 @@
+DROP DATABASE Testing_System_Assignment_1;
 CREATE DATABASE Testing_System_Assignment_1;
 USE Testing_System_Assignment_1;
 
 CREATE TABLE Department (
-	DepartmentID	INT,
-    DepartmentName	VARCHAR(100)
-    );
+	DepartmentID	TINYINT AUTO_INCREMENT PRIMARY KEY,
+    DepartmentName	NVARCHAR(100) NOT NULL UNIQUE KEY
+);
     
 CREATE TABLE Position (
-	PositionID		INT,
-	PositionName	VARCHAR(100)
-	);
+	PositionID		TINYINT AUTO_INCREMENT PRIMARY KEY,
+	PositionName	ENUM('DEV','Test','Scrum Master','PM')
+);
 
 CREATE TABLE `Account` (
-	AccountID		INT,
-    Email			VARCHAR(100),
-    UserName		VARCHAR(100),
-	FullName		VARCHAR(100),
-    DepartmentID	INT,
-    PositionID		INT,
-    CreateDate		DATE
-    );
+	AccountID		SMALLINT AUTO_INCREMENT PRIMARY KEY,
+    Email			VARCHAR(100) NOT NULL UNIQUE KEY,
+    UserName		VARCHAR(100) NOT NULL UNIQUE KEY,
+	FullName		NVARCHAR(100) NOT NULL UNIQUE KEY,
+    DepartmentID	TINYINT NOT NULL,
+    PositionID		TINYINT NOT NULL,
+    CreateDate		DATE,
+    FOREIGN KEY (DepartmentID) 	REFERENCES Department (DepartmentID),
+    FOREIGN KEY (PositionID) 	REFERENCES Position (PositionID)
+);
     
 CREATE TABLE `Group` (
-	GroupID			INT,
-    GroupName		VARCHAR(100),
-    CreatorID		INT,
-    CreateDate		DATE
+	GroupID			TINYINT AUTO_INCREMENT PRIMARY KEY,
+    GroupName		NVARCHAR(100) NOT NULL UNIQUE KEY,
+    CreatorID		SMALLINT NOT NULL,
+    CreateDate		DATE,
+    FOREIGN KEY (CreatorID) 	REFERENCES `Account`(AccountID)
 );
 
 CREATE TABLE GroupAccount (
-	GroupID			INT,
-    AccountID		INT,
-    JoinDate		DATE
+	GroupID			TINYINT NOT NULL,
+    AccountID		SMALLINT NOT NULL,
+    JoinDate		DATE,
+    PRIMARY KEY(GroupID,AccountID),
+    FOREIGN KEY (GroupID) 		REFERENCES `Group`(GroupID),
+    FOREIGN KEY (AccountID) 	REFERENCES `Account`(AccountID)
 );
 
 CREATE TABLE TypeQuestion (
-	TypeID			INT,
-    TypeName		VARCHAR(100)
+	TypeID			TINYINT AUTO_INCREMENT PRIMARY KEY,
+    TypeName		ENUM('Essay','Multiple-Choice')
 );
 
 CREATE TABLE CategoryQuestion (
-	CategoryID		INT,
-    CategoryName	VARCHAR(100)
+	CategoryID		TINYINT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName	NVARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Question (
-	QuestionID		INT,
-    Content			VARCHAR(100),
-    CategoryID		INT,
-    TypeID			INT,
-    CreatorID		INT,
-    CreateDate		DATE
+	QuestionID		SMALLINT AUTO_INCREMENT PRIMARY KEY,
+    Content			TEXT NOT NULL,
+    CategoryID		TINYINT,
+    TypeID			TINYINT,
+    CreatorID		SMALLINT,
+    CreateDate		DATE,
+    FOREIGN KEY (CategoryID) 	REFERENCES CategoryQuestion(CategoryID),
+    FOREIGN KEY (TypeID) 		REFERENCES TypeQuestion(TypeID),
+    FOREIGN KEY (CreatorID)		REFERENCES `Account`(AccountID)
 );
 
 CREATE TABLE Answer (
-	AnswerID		INT,
-    Content			VARCHAR(100),
-    QuestionID		INT,
-    isCorrect		VARCHAR(100)
+	AnswerID		SMALLINT AUTO_INCREMENT PRIMARY KEY,
+    Content			TEXT NOT NULL,
+    QuestionID		SMALLINT,
+    isCorrect		BOOLEAN,
+    -- bit,boolean, enum('true','false')
+    FOREIGN KEY (QuestionID) 	REFERENCES Question(QuestionID)
 );
 
 CREATE TABLE Exam (
-	ExamID			INT,
-    `Code`			INT,
-    Tilte			VARCHAR(100),
-    CategoryID		INT,
-    Duration		VARCHAR(100),
-    CreatorID		INT,
-    CreateDate		DATE
+	ExamID			SMALLINT AUTO_INCREMENT PRIMARY KEY,
+    `Code`			VARCHAR(20) NOT NULL,
+    Tilte			NVARCHAR(100) NOT NULL,
+    CategoryID		TINYINT  NOT NULL,
+    Duration		TINYINT  NOT NULL,
+    CreatorID		SMALLINT NOT NULL,
+    CreateDate		DATE,
+    FOREIGN KEY (CategoryID)	REFERENCES CategoryQuestion(CategoryID),
+    FOREIGN KEY (CreatorID)		REFERENCES `Account`(AccountID)
 );
 
 CREATE TABLE ExamQuestion (
-	ExamID			INT,
-    QuestionID		INT
+	ExamID			SMALLINT NOT NULL,
+    QuestionID		SMALLINT NOT NULL,
+    PRIMARY KEY		(ExamID,QuestionID),
+    FOREIGN KEY (ExamID)		REFERENCES Exam(ExamID),
+    FOREIGN KEY (QuestionID) 	REFERENCES Question(QuestionID)
 );
