@@ -64,11 +64,11 @@ INSERT INTO Answer				(isCorrect)
 VALUES							('True'),
 								('False');
 INSERT INTO Answer				(Content, QuestionID, isCorrect)
-VALUES							('traloi1',1, 1),
-								('traloi2',2, 2),
-								('traloi3',3, 2),
-								('traloi4',4, 1),
-								('traloi5',5, 2);
+VALUES							('traloi1',1, true),
+								('traloi2',2, true),
+								('traloi3',3, false),
+								('traloi4',4, false),
+								('traloi5',5, false);
 SELECT * FROM Answer;
 
 INSERT INTO Exam				(`Code`, Tilte, CategoryID, Duration, CreatorID)
