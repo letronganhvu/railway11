@@ -7,7 +7,7 @@ CREATE TABLE Department (
     DepartmentName	NVARCHAR(100) NOT NULL UNIQUE KEY
 );
     
-CREATE TABLE Position (
+CREATE TABLE `Position` (
 	PositionID		TINYINT AUTO_INCREMENT PRIMARY KEY,
 	PositionName	ENUM('DEV','Test','Scrum Master','PM')
 );
@@ -17,9 +17,9 @@ CREATE TABLE `Account` (
     Email			VARCHAR(100) NOT NULL UNIQUE KEY,
     UserName		VARCHAR(100) NOT NULL UNIQUE KEY,
 	FullName		NVARCHAR(100) NOT NULL UNIQUE KEY,
-    DepartmentID	TINYINT NOT NULL,
-    PositionID		TINYINT NOT NULL,
-    CreateDate		DATE,
+    DepartmentID	TINYINT NOT NULL DEFAULT 1,
+    PositionID		TINYINT NOT NULL DEFAULT 1,
+    CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (DepartmentID) 	REFERENCES Department (DepartmentID),
     FOREIGN KEY (PositionID) 	REFERENCES Position (PositionID)
 );
