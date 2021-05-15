@@ -21,21 +21,21 @@ CREATE TABLE `Account` (
     PositionID		TINYINT NOT NULL DEFAULT 1,
     CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (DepartmentID) 	REFERENCES Department (DepartmentID),
-    FOREIGN KEY (PositionID) 	REFERENCES Position (PositionID)
+    FOREIGN KEY (PositionID) 	REFERENCES `Position` (PositionID)
 );
     
 CREATE TABLE `Group` (
 	GroupID			TINYINT AUTO_INCREMENT PRIMARY KEY,
     GroupName		NVARCHAR(100) NOT NULL UNIQUE KEY,
     CreatorID		SMALLINT NOT NULL,
-    CreateDate		DATE,
+    CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (CreatorID) 	REFERENCES `Account`(AccountID)
 );
 
 CREATE TABLE GroupAccount (
 	GroupID			TINYINT NOT NULL,
     AccountID		SMALLINT NOT NULL,
-    JoinDate		DATE,
+    JoinDate		DATETIME DEFAULT NOW(),
     PRIMARY KEY(GroupID,AccountID),
     FOREIGN KEY (GroupID) 		REFERENCES `Group`(GroupID),
     FOREIGN KEY (AccountID) 	REFERENCES `Account`(AccountID)
@@ -57,7 +57,7 @@ CREATE TABLE Question (
     CategoryID		TINYINT,
     TypeID			TINYINT,
     CreatorID		SMALLINT,
-    CreateDate		DATE,
+    CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (CategoryID) 	REFERENCES CategoryQuestion(CategoryID),
     FOREIGN KEY (TypeID) 		REFERENCES TypeQuestion(TypeID),
     FOREIGN KEY (CreatorID)		REFERENCES `Account`(AccountID)
@@ -79,7 +79,7 @@ CREATE TABLE Exam (
     CategoryID		TINYINT  NOT NULL,
     Duration		TINYINT  NOT NULL,
     CreatorID		SMALLINT NOT NULL,
-    CreateDate		DATE,
+    CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (CategoryID)	REFERENCES CategoryQuestion(CategoryID),
     FOREIGN KEY (CreatorID)		REFERENCES `Account`(AccountID)
 );

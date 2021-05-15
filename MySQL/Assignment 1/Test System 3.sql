@@ -8,7 +8,7 @@ FROM	Department
 WHERE	DepartmentName = 'Sale';
 
 -- Question 4
-SELECT	MAX(FullName)
+SELECT MAX(CHAR_LENGTH(FullName)) -- max(
 FROM	`account`;
 
 -- Question 5

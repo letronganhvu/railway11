@@ -18,9 +18,9 @@ SELECT * FROM `Position`;
 INSERT INTO `Account`			(Email, UserName, FullName, DepartmentID, PositionID)
 VALUES							('thuong@gmail.com', 'thuong', 'nguyen thuong', 1, 1),
 								('toan@gmail.com', 'toan', 'bui toan', 2, 2),
-								('oanh@gmail.com', 'oanh', 'le oanh', 3, 1),
+								('oanh@gmail.com', 'oanh', 'le oanh', 4, 1),
 								('nam@gmail.com', 'nam', 'chu nam', 4, 3),
-								('vule@gmail.com', 'vu', 'le vu', 5, 4);
+								('vule@gmail.com', 'vu', 'le vu',1, 4);
 SELECT * FROM `Account`;
 
 INSERT INTO `Group`				(GroupName, CreatorID)
@@ -54,21 +54,19 @@ SELECT * FROM CategoryQuestion;
 
 INSERT INTO Question			(Content, CategoryID, TypeID, CreatorID)
 VALUES							('cauhoi1', 1, 1, 1),
-								('cauhoi2', 2, 2, 3),
-								('cauhoi3', 3, 1, 2),
+								('cauhoi2', 1, 2, 3),
+								('cauhoi3', 4, 1, 2),
 								('cauhoi4', 4, 2, 5),
 								('cauhoi5', 5, 1, 4);
 SELECT * FROM Question;
 
-INSERT INTO Answer				(isCorrect)
-VALUES							('True'),
-								('False');
+
 INSERT INTO Answer				(Content, QuestionID, isCorrect)
-VALUES							('traloi1',1, true),
-								('traloi2',2, true),
-								('traloi3',3, false),
-								('traloi4',4, false),
-								('traloi5',5, false);
+VALUES							('traloi1',1, True),
+								('traloi2',3, True),
+								('traloi3',3, False),
+								('traloi4',3, False),
+								('traloi5',4, False);
 SELECT * FROM Answer;
 
 INSERT INTO Exam				(`Code`, Tilte, CategoryID, Duration, CreatorID)
@@ -82,8 +80,8 @@ SELECT * FROM Exam;
 INSERT INTO ExamQuestion		(ExamID, QuestionID)
 VALUES							(1,2),
 								(2,3),
-								(3,4),
-								(4,5),
+								(3,3),
+								(4,3),
 								(5,1);
 SELECT * FROM ExamQuestion;
 
