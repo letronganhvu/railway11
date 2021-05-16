@@ -8,13 +8,18 @@ FROM	Department
 WHERE	DepartmentName = 'Sale';
 
 -- Question 4
-SELECT MAX(CHAR_LENGTH(FullName)) -- max(
-FROM	`account`;
+SELECT	*
+FROM	`account`
+WHERE	length(FullName) = (SELECT MAX(LENGTH(FullName)) 
+								FROM	`account`);
 
 -- Question 5
-SELECT	MAX(FullName)
+SELECT	*
 FROM	`account`
-WHERE	DepartmentID = 3;
+WHERE	length(FullName) = (SELECT MAX(LENGTH(FullName)) 
+								FROM	`account`)
+                                &&	DepartmentID = 3;
+
 
 -- Question 6
 SELECT	GroupName
@@ -28,7 +33,7 @@ GROUP BY	QuestionID
 HAVING		Count(QuestionID) >= 4;
 
 -- Question 8
-SELECT	`Code`
+SELECT	*
 FROM	Exam
 WHERE	Duration >= 60	AND	CreateDate < 2019/12/20;
 
