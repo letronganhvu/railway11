@@ -3,8 +3,8 @@ CREATE VIEW PhongSale AS
 SELECT 		*
 FROM 		`account`
 JOIN 		department USING(departmentID)
-WHERE 		DepartmentName = 'Sale'
-GROUP BY 	DepartmentID;	
+WHERE 		DepartmentName = 'Sale';
+
 DROP VIEW 	PhongSale;
 -- Question 2: Tạo view có chứa thông tin các account tham gia vào nhiều group nhất
 CREATE VIEW NhanVienThamGIaGroup AS
@@ -33,7 +33,25 @@ WHERE 		questionID IN (	SELECT QuestionID
 							FROM	cauhoidai2);
                     
 -- Question 4: Tạo view có chứa danh sách các phòng ban có nhiều nhân viên nhất
+CREATE VIEW danhsach AS
+SELECT	DepartmentName, count(DepartmentID)
+FROM	`account`
+JOIN	department USING(departmentID)
+GROUP BY	DepartmentID
+HAVING	count(DepartmentID) = (SELECT count(DepartmentID)
+								FROM	`account`
+								JOIN	department USING (departmentID)
+								GROUP BY DepartmentID
+								ORDER BY count(DepartmentID) DESC
+								limit 	1);
+DROP VIEW 	danhsach;
 
+-- Question 5: Tạo view có chứa tất các các câu hỏi do user họ Nguyễn tạo
+CREATE VIEW danhsachcauhoi AS
+SELECT	acc.FullName, q.Content
+FROM	`account` acc
+JOIN	question q ON acc.AccountID = q.CreatorID
+GROUP BY	acc.AccountID
+HAVING	acc.FullName LIKE 'nguyen%'
 
-                              
 
