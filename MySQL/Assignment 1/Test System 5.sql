@@ -34,24 +34,24 @@ WHERE 		questionID IN (	SELECT QuestionID
                     
 -- Question 4: Tạo view có chứa danh sách các phòng ban có nhiều nhân viên nhất
 CREATE VIEW danhsach AS
-SELECT	DepartmentName, count(DepartmentID)
-FROM	`account`
-JOIN	department USING(departmentID)
+SELECT		DepartmentName, count(DepartmentID)
+FROM		`account`
+JOIN		department USING(departmentID)
 GROUP BY	DepartmentID
-HAVING	count(DepartmentID) = (SELECT count(DepartmentID)
-								FROM	`account`
-								JOIN	department USING (departmentID)
-								GROUP BY DepartmentID
-								ORDER BY count(DepartmentID) DESC
-								limit 	1);
+HAVING		count(DepartmentID) = ( SELECT count(DepartmentID)
+									FROM	`account`
+									JOIN	department USING (departmentID)
+									GROUP BY DepartmentID
+									ORDER BY count(DepartmentID) DESC
+									LIMIT 	1);
 DROP VIEW 	danhsach;
 
 -- Question 5: Tạo view có chứa tất các các câu hỏi do user họ Nguyễn tạo
 CREATE VIEW danhsachcauhoi AS
-SELECT	acc.FullName, q.Content
-FROM	`account` acc
-JOIN	question q ON acc.AccountID = q.CreatorID
+SELECT		acc.FullName, q.Content
+FROM		`account` acc
+JOIN		question q ON acc.AccountID = q.CreatorID
 GROUP BY	acc.AccountID
-HAVING	acc.FullName LIKE 'nguyen%'
+HAVING		acc.FullName LIKE 'nguyen%'
 
 
