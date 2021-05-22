@@ -149,5 +149,36 @@ SELECT *
 FROM `Account` A
 WHERE Username = A.Username;
 END $$
+DELIMITER ;
+
+-- Question 8: Viết 1 store cho phép người dùng nhập vào Essay hoặc Multiple-Choice
+--  để thống kê câu hỏi essay hoặc multiple-choice nào có content dài nhất 
+-- 
+DROP PROCEDURE IF EXISTS GetMaxLengthQuestionByTypeID;
 DELIMITER $$
+CREATE PROCEDURE GetMaxLengthQuestionByTypeID (IN inTypeName ENUM('Essay', 'Multiple-Choice'))
+	BEGIN
+		SELECT *
+        FROM	question
+        WHERE length(Content) = (	SELECT max(length(Content))
+									FROM	Question
+                                    JOIN	TypeQuestion USING(TypeID)
+                                    WHERE	TypeName = inTypeName);
+	END $$
+DELIMITER ;
+
+-- Question 9: Viết 1 store cho phép người dùng xóa exam dựa vào ID
+DROP PROCEDURE IF EXISTS DeleteExam;
+DELIMITER $$
+CREATE PROCEDURE DeleteExam ( IN inExamID INT )
+	BEGIN
+		DELETE
+        FROM	exam
+        WHERE ExamID = inExamID;
+	END $$
+DELIMITER ;
+SET FOREIGN_KEY_CHECKS = 0;
+-- Question 10: Tìm ra các exam được tạo từ 3 năm trước và xóa các exam đó đi (sử 
+-- dụng store ở câu 9 để xóa)
+-- Sau đó in số lượng record đã remove từ các table liên quan trong khi removing
 
