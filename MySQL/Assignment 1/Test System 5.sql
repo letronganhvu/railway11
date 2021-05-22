@@ -46,6 +46,19 @@ HAVING		count(DepartmentID) = ( SELECT count(DepartmentID)
 									LIMIT 	1);
 DROP VIEW 	danhsach;
 
+WITH qt4 AS (
+SELECT		DepartmentName, count(DepartmentID)
+FROM		`account`
+JOIN		department USING(departmentID)
+GROUP BY	DepartmentID
+HAVING		count(DepartmentID) = ( SELECT count(DepartmentID)
+									FROM	`account`
+									JOIN	department USING (departmentID)
+									GROUP BY DepartmentID
+									ORDER BY count(DepartmentID) DESC
+									LIMIT 	1))
+SELECT *
+FROM qt4;
 -- Question 5: Tạo view có chứa tất các các câu hỏi do user họ Nguyễn tạo
 CREATE VIEW danhsachcauhoi AS
 SELECT		acc.FullName, q.Content
@@ -53,5 +66,6 @@ FROM		`account` acc
 JOIN		question q ON acc.AccountID = q.CreatorID
 GROUP BY	acc.AccountID
 HAVING		acc.FullName LIKE 'nguyen%'
+-- WHERE SUBSTRING_INDEX(FullName, ' ',1)='Nguyen'
 
 
