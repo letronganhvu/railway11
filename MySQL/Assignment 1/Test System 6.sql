@@ -182,3 +182,44 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- dụng store ở câu 9 để xóa)
 -- Sau đó in số lượng record đã remove từ các table liên quan trong khi removing
 
+DELIMITER $$
+CREATE PROCEDURE DeleteExam10 ()
+	BEGIN
+		DECLARE ExamID1 INT;
+		WITH ExamID3Years AS (
+        SELECT ExamID
+        FROM Exam
+		WHERE (YEAR(now()) - YEAR(CreateDate)) >=3)
+        SELECT ExamID INTO ExamID1
+        FROM ExamID3Years
+        LIMIT 1;
+        CALL DeleteExam(ExamID1);
+	END $$
+DELIMITER ;
+CALL  DeleteExam10();
+
+-- Question 11: Viết store cho phép người dùng xóa phòng ban bằng cách người dùng 
+-- nhập vào tên phòng ban và các account thuộc phòng ban đó sẽ được 
+-- chuyển về phòng ban default là phòng ban chờ việc
+
+DROP PROCEDURE IF EXISTS Question11;
+DELIMITER $$
+CREATE PROCEDURE Question11 ( IN in_DepartmentName VARCHAR(50))
+	BEGIN
+    -- khai bao bien IN DEpartmentID de luu lai id phong ban da xoa 
+		DECLARE	IN_DepartmentID INT;
+        SET FOREIGN_KEY_CHECKS = 0;
+        SELECT DepartmentID INTO in_DepartmentID
+        FROM Department
+        WHERE DepartmentName = in_DepartmentName;
+        DELETE
+        FROM Department
+        WHERE DepartmentName = in_DepartmentName;
+	-- update lai DepartmentID = 10 cac account thuoc in_DepartmentName
+        UPDATE `account`
+        SET DepartmentID = 10
+        WHERE DepartmentID = in_DepartmentID;
+        SELECT *
+        FROM `account`;
+	END $$
+DELIMITER ;
