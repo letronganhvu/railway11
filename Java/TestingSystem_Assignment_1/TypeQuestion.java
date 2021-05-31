@@ -1,6 +1,6 @@
 
 public class TypeQuestion {
 	int id;
-	String typeName;
+	TypeQuestionEnum name;
 
 }
