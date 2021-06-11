@@ -68,4 +68,19 @@ public class Exercise5 {
 //	Hãy khởi tạo Object HighSchoolStudent với các giá trị: id = 1, name =
 //	"Nam", clazz = "Chuyên Văn", desiredUniversity = "Đại học công
 //	nghệ"
+	
+	public void question4() {
+		Scanner sc = new Scanner(System.in);
+		QuanLySach qls = new QuanLySach();
+		System.out.println("Mời bạn nhập vào loại tài liệu muốn thêm:\n1.Sách\n2.Tạp chí\n3.Báo");
+		qls.addTaiLieu(sc.nextInt());
+		sc.nextLine();
+		System.out.println("Mời bạn nhập vào loại tài liệu muốn thêm:\n1.Sách\n2.Tạp chí\n3.Báo");
+		qls.addTaiLieu(sc.nextInt());
+		sc.nextLine();
+		
+		qls.showTaiLieu();
+	}
+	
+	
 }

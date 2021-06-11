@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import com.vti.entity.Student;
 import com.vti.entity.Student2;
+import com.vti.entity.qs3.Hinhchunhat;
+import com.vti.entity.qs3.Hinhvuong;
 
 public class Exercise2 {
 	public void question1() {
@@ -57,4 +59,22 @@ public class Exercise2 {
 
 		}
 	}
+	
+	public void question3() {
+		Hinhchunhat hinhchunhat = new Hinhchunhat();
+		hinhchunhat.canh1 = 5f;
+		hinhchunhat.canh2 = 10f;
+		System.out.println("tính Chu vi/Diện tích hình chữ nhật:");
+		hinhchunhat.tinhChuVi();
+		hinhchunhat.tinhDienTich();
+		
+		Hinhvuong hinhVuong = new Hinhvuong();
+		hinhVuong.canh1 = 6f;
+		hinhVuong.canh2 = 6f;
+		System.out.println("tính Chu vi/Diện tích hình vuông:");
+		hinhVuong.tinhChuVi();
+		hinhVuong.tinhDienTich();
+	}
+	
+	
 }
