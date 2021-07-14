@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <div>
+        Number 1:
+        <input id="number1" placeholder="nhập number1 ..."><br> Number 2:
+        <input id="number2" placeholder="nhập number2 ..."><br>
+        <button onclick="myFunction1()">Cộng</button>
+        <button onclick="myFunction2()">Trừ</button>
+        <button onclick="myFunction3()">Nhân</button>
+        <button onclick="myFunction4()">Chia</button>
+
+
+        <span>Kết quả:</span> <input id="ketqua" readonly placeholder="Kết quả ...">
+
+    </div>
+    <script>
+        function myFunction1() {
+            var number1 = document.getElementById("number1").value;
+            var number2 = document.getElementById("number2").value;
+            document.getElementById("ketqua").value = Number(number1) + Number(number2);
+        }
+
+        function myFunction2() {
+            var number1 = document.getElementById("number1").value;
+            var number2 = document.getElementById("number2").value;
+            document.getElementById("ketqua").value = Number(number1) - Number(number2);
+        }
+
+        function myFunction3() {
+            var number1 = document.getElementById("number1").value;
+            var number2 = document.getElementById("number2").value;
+            document.getElementById("ketqua").value = Number(number1) * Number(number2);
+        }
+
+        function myFunction4() {
+            var number1 = document.getElementById("number1").value;
+            var number2 = document.getElementById("number2").value;
+            document.getElementById("ketqua").value = Number(number1) / Number(number2);
+        }
+    </script>
+</body>
+
+</html>

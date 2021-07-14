@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>question1G</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center; color: green;">Phiếu đăng ký tham gia chương trình khuyến mại</h1>
+    <table style="background-color: greenyellow; width: 40%; margin-left: 30%;">
+        <tr>
+            <th style="color: green; text-align: left;">
+                Họ và tên
+            </th>
+            <td><input type="text" placeholder="nhập họ tên"></td>
+        </tr>
+        <tr>
+            <th style="color: green; text-align: left;">Địa chỉ</th>
+            <td><input type="text" placeholder="nhập địa chỉ"></td>
+        </tr>
+        <tr>
+            <th style="color: green; text-align: left;">Điện thoại</th>
+            <td><input type="number" placeholder="nhập số điện thoại"></td>
+        </tr>
+        <tr>
+            <th style="color: green; text-align: left;">Giới tính</th>
+            <td>
+                <input type="radio" name="gender" value="Nam"> Nam <input type="radio" name="gender" value="Nữ" checked> Nữ
+            </td>
+        </tr>
+        <tr>
+            <th style="color: green; text-align: left;">Nghề nghiệp</th>
+            <td>
+                <form action="/action_page.php"><select>
+                <option value="sửa ống nước">sửa ống nước</option>
+                <option value="Nhặt lá">Nhặt lá</option>
+                <option value="sục bình xăng">sục bình xăng</option>
+                <option value="đá trứng cút">đá trứng cút</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th style="color: green; text-align: left;">Chọn sản phẩm tham gia</th>
+            <td>
+                <form action="/action_page.php"><select>
+                <option value="ống nước">ống nước</option>
+                <option value="cần sa">Cần sa</option>
+                <option value="Ma tuý đá">Ma tuý đá</option>
+                <option value="trứng cút">trứng cút</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th style="color: green; text-align: left;">Số người dự đoán tham gia</th>
+            <td>
+                <input type="number" name="number" placeholder="250000">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><input type="submit" value="Đồng ý"></th>
+        </tr>
+    </table>
+</body>
+
+</html>

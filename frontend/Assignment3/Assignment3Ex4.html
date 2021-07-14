@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <button type="button" onclick="question6()">Click here </button><br>
+    <button type="button" onclick="question8()">Click here 2</button><br>
+    <input id="name" placeholder="nhập tên..."><br>
+    <button onclick="question5()">Click here 3</button>
+    <script>
+        window.alert("Hello World ! qs1")
+
+        document.write("Hello World ! qs2")
+
+        console.log("Hello World qs3")
+
+        confirm("Bạn có đồng ý yêu không? qs4")
+
+        function question6() {
+            var fullName = prompt("Nhập họ tên của bạn:");
+            var age = prompt("nhập tuổi của bạn")
+
+            document.getElementById("demo").innerHTML = "Chào bạn: " + fullName;
+
+            document.getElementById("demo2").innerHTML = "Tuổi của bạn là:" + age;
+        }
+
+        alert(Date(0) + "qs7")
+
+        function question8() {
+            var name = prompt("Nhập họ tên của bạn:");
+            var gender = prompt("nhập giới tính của bạn:");
+            var email = prompt("nhập email của bạn:")
+            document.getElementById("demo").innerHTML = "Name: " + name;
+            document.getElementById("demo2").innerHTML = "Gender: " + gender;
+            document.getElementById("demo3").innerHTML = "Email: " + email;
+
+        }
+
+        function question5() {
+            var name = document.getElementById("name").value;
+            alert("Hello " + name)
+        }
+    </script>
+
+
+
+</body>
+
+</html>

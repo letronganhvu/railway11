@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <table border="1" style=" margin-left: 33%;">
+        <tr>
+            <th>Nhập độ dài chiều dài thứ nhất: </th>
+            <td><input id="chieudai"></td>
+        </tr>
+        <tr>
+            <th>Nhập độ dài chiều dài thứ hai: </th>
+            <td><input id="chieurong"></td>
+        </tr>
+        <tr>
+            <th colspan="2"><button onclick="function1()">Tính toán</button></th>
+        </tr>
+        <tr>
+            <th style="text-align: left;"><b>Chu vi là:</b></th>
+            <td><input id="ketqua" readonly></td>
+        </tr>
+        <tr>
+            <th style="text-align: left;">Diện tích là:</th>
+            <td><input id="ketqua2" readonly></td>
+        </tr>
+    </table>
+    <script>
+        function function1() {
+            var chieudai = document.getElementById("chieudai").value;
+            var chieurong = document.getElementById("chieurong").value;
+            document.getElementById("ketqua").value = Number(chieudai) * 2 + Number(chieurong) * 2;
+            document.getElementById("ketqua2").value = Number(chieudai) * Number(chieurong);
+        }
+    </script>
+</body>
+
+</html>

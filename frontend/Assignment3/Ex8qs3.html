@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <table border="1" style="margin-left: 33%;">
+        <tr>
+            <th>Nhập a</th>
+            <td colspan="2"><input id="a"></td>
+        </tr>
+        <tr>
+            <th>Nhập b</th>
+            <td colspan="2"><input id="b"></td>
+        </tr>
+        <tr>
+            <th>Nhập c</th>
+            <td colspan="2"><input id="c"></td>
+        </tr>
+        <tr>
+            <th colspan="3"><button onclick="function1()">Giải phương trình</th>
+        </tr>
+        <tr>
+            <th style="text-align: left;">Kết quả</th>
+            <td><input id="ketqua" readonly></td>
+            <td><input id="ketqua2" readonly></td>
+        </tr>
+    </table>
+    <script>
+        function function1() {
+        var a = document.getElementById("a").value;
+        var b = document.getElementById("b").value;
+        var c = document.getElementById("c").value;
+        var delta = b * b - 4 * a * c
+
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            alert("Hãy nhập vào số!")
+        } else if (delta < 0) {
+            document.getElementById("ketqua").value = "Vô nghiệm"
+            document.getElementById("ketqua2").value = "Vô nghiệm"
+        } else if (delta == 0) {
+            document.getElementById("ketqua").value = -b / (2 * a)
+            document.getElementById("ketqua2").value = -b / (2 * a)
+        } else if (delta > 0) {
+            document.getElementById("ketqua").value = (-b + Math.sqrt(delta)) / (2 * a)
+            document.getElementById("ketqua2").value = (-b - Math.sqrt(delta)) / (2 * a)
+        }
+    }
+    </script>
+</body>
+
+</html>
